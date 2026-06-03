@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioBiblio - Sistema de Biblioteca</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">📚 Biblioteca Comunitária</h1>
+            <div class="space-x-4">
+                <button onclick="switchTab('dashboard')" class="hover:underline font-semibold cursor-pointer">Painel</button>
+                <button onclick="switchTab('leitores')" class="hover:underline font-semibold cursor-pointer">Leitores</button>
+                <button onclick="switchTab('livros')" class="hover:underline font-semibold cursor-pointer">Livros</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-6">
+        
+        <section id="tab-dashboard" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-lg font-bold mb-4 text-blue-600">Novo Empréstimo</h2>
+                    <form id="form-emprestimo" class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium">Leitor</label>
+                            <select id="emp-leitor" class="w-full border p-2 rounded" required><option value="">Carregando...</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium">Livro</label>
+                            <select id="emp-livro" class="w-full border p-2 rounded" required><option value="">Carregando...</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium">Data Limite Devolução</label>
+                            <input type="date" id="emp-data" class="w-full border p-2 rounded" required>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 cursor-pointer">Registrar Saída</button>
+                    </form>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+                    <h2 class="text-lg font-bold mb-4 text-gray-700">Empréstimos Ativos / Atrasados</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b bg-gray-50 text-sm text-gray-600">
+                                    <th class="p-2">Leitor</th>
+                                    <th class="p-2">Livro</th>
+                                    <th class="p-2">Prazo</th>
+                                    <th class="p-2">Status</th>
+                                    <th class="p-2">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-emprestimos">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-leitores" class="tab-content hidden">
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto">
+                <h2 class="text-lg font-bold mb-4">Cadastrar Novo Leitor</h2>
+                <form id="form-leitor" class="space-y-3 mb-6">
+                    <input type="text" id="lei-nome" placeholder="Nome Completo" class="w-full border p-2 rounded" required>
+                    <input type="text" id="lei-telefone" placeholder="Telefone" class="w-full border p-2 rounded" required>
+                    <input type="email" id="lei-email" placeholder="E-mail (Opcional)" class="w-full border p-2 rounded">
+                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer">Salvar Leitor</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="tab-livros" class="tab-content hidden">
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto">
+                <h2 class="text-lg font-bold mb-4">Cadastrar Novo Livro</h2>
+                <form id="form-livro" class="space-y-3 mb-6">
+                    <input type="text" id="liv-titulo" placeholder="Título do Livro" class="w-full border p-2 rounded" required>
+                    <input type="text" id="liv-autor" placeholder="Autor" class="w-full border p-2 rounded" required>
+                    <input type="number" id="liv-qtd" placeholder="Quantidade Disponível" class="w-full border p-2 rounded" min="1" required>
+                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer">Salvar Livro</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
